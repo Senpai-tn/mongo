@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+const User = require('../models/User')
+var router = express.Router()
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/add', async (req, res, next) => {
+  var u = new User({ id: Math.random() })
+  const saved = await u.save()
+  res.send(u)
+})
 
-module.exports = router;
+router.get('/', async (req, res, next) => {
+  var users = await User.find()
+  res.send(users)
+})
+
+module.exports = router
