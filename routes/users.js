@@ -3,7 +3,7 @@ const User = require('../models/User')
 var router = express.Router()
 
 /* GET users listing. */
-router.get('/add', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   var u = new User({ id: Math.random() })
   const saved = await u.save()
   res.send(u)
